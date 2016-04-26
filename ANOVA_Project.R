@@ -1,9 +1,18 @@
-##Setup working directory, import packages, and ingest data
+##Setup working directory, import packages, and ingest extracted
+#IMDB movie data
 setwd("~/data")
 library(ggplot2)
 library(multcomp)
 if(!file.exists("./Project_Data.csv")){download.file(url = "https://raw.githubusercontent.com/cdo03c/Movie-Genre_ANCOVA/master/Project_Data.csv", destfile = "./Project_Data.csv")}
 df <- read.csv("./Project_Data.csv")
+
+#The data set contains the following variables:
+#Movie is the title of the movie
+#Year is the year that the movie was released in the US
+#Rating is the average IMDB user rating
+#Genre is the genre category for the movie
+#EstBudgetUSD is the estimated budget for producing the movie
+#GrossUSD is the gross US theater ticket sales in USD
 
 #Rescaling GrossUSD and EstBudgetUSD to millions of dollars
 df <- within(df, {
@@ -78,7 +87,10 @@ for(i in unique(df$Genre)){
 df.fit <- lm(Rating ~ Genre + Genre* GrossUSD-1, df)
 summary(df.fit)
 
-#The follwing section presents the lsmeans difference in ratings for the three
+#NOTE: This test does not account for outliers because that was not part of the
+#course project
+
+#The following section presents the lsmeans difference in ratings for the three
 #genres at three different levels of GrossUSD: 50, 150, and 250 million USD
 levels <- data.frame(GrossUSD = seq(50, 250, 100))
 fit<- lm(Rating ~ GrossUSD, df[df$Genre == "Action",])
