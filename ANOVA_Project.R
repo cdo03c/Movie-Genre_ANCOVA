@@ -1,7 +1,8 @@
 ##Setup working directory, import packages, and ingest data
-setwd("~/Dropbox/Cuyler School/Applied Stats/STAT502/Project")
+setwd("~/data")
 library(ggplot2)
 library(multcomp)
+if(!file.exists("./Project_Data.csv")){download.file(url = "https://raw.githubusercontent.com/cdo03c/Movie-Genre_ANCOVA/master/Project_Data.csv", destfile = "./Project_Data.csv")}
 df <- read.csv("./Project_Data.csv")
 
 #Rescaling GrossUSD and EstBudgetUSD to millions of dollars
