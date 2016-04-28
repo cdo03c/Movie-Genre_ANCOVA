@@ -4,4 +4,4 @@ This is a final project for the Penn State graduate course STAT502.  In this pro
 This repo contains the following:
 1) adata set I created used the "Random Title" feature on the IMDB website
 2) the R code I wrote to run an unequal slopes ANCOVA
-3) the paper I wrote for the project
+3) the python code I wrote to run an unequal slopes ANCOVA
